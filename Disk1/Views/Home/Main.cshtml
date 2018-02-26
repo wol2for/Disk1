@@ -1,0 +1,137 @@
+﻿@model IEnumerable<Disk1.Models.bd.CNAP>
+
+@{
+    ViewBag.Title = "Main";
+}
+
+<h2>@ViewBag.username</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@*<table class="rwd-table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FIO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gave)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Got)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th>Edit</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td data-th="@Html.DisplayNameFor(model => model.FIO)">
+                    @Html.DisplayFor(modelItem => item.FIO)
+                </td>
+                <td data-th="@Html.DisplayNameFor(model => model.Address)">
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td data-th="@Html.DisplayNameFor(model => model.Gave)">
+                    @Html.DisplayFor(modelItem => item.Gave)
+                </td>
+                <td data-th="@Html.DisplayNameFor(model => model.Got)">
+                    @Html.DisplayFor(modelItem => item.Got)
+                </td>
+                <td data-th="@Html.DisplayNameFor(model => model.Comment)">
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td data-th="Edit">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                </td>
+            </tr>
+
+
+        }
+
+    </table>*@
+<div class="table-responsive">
+    <table class="table ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FIO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gave)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Got)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th>Edit</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FIO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gave)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Got)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                </td>
+            </tr>
+
+
+        }
+
+    </table>
+
+</div>
+
+@*@foreach (var item in Model)
+    {
+
+
+    <div class="row">
+        <div class="col-sm-2">
+            @Html.DisplayFor(modelItem => item.FIO)
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(modelItem => item.Address)
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(modelItem => item.Gave)
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(modelItem => item.Got)
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(modelItem => item.Comment)
+        </div>
+        <div class="col-sm-2">
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+        </div>
+        <hr />
+    </div>
+
+    }*@

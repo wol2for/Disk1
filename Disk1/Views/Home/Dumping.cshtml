@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Disk1.Models.bd.Dumping>
+
+@{
+    ViewBag.Title = "Викопіювання";
+}
+<h2>@ViewBag.username</h2>
+
+<div class="table-responsive">
+    <table class="table ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FIO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gave)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Got)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FIO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gave)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Got)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+            </tr>
+
+
+        }
+    </table>
+</div>
+

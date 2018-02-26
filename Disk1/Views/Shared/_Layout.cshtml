@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - ЦНАП</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script>
+        //Копировать из sessionStorage в localStorage для поддержки новых вкладок
+        var sessionStorage_transfer = function (event) {
+            if (!event) { event = window.event; }
+            if (!event.newValue) return;          
+            if (event.key == 'getSessionStorage') {
+                localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+                localStorage.removeItem('sessionStorage');
+            } else if (event.key == 'sessionStorage' && !sessionStorage.length) {
+                var data = JSON.parse(event.newValue);
+                for (var key in data) {
+                    sessionStorage.setItem(key, data[key]);
+                }
+            }
+        };
+
+        if (window.addEventListener) {
+            window.addEventListener("storage", sessionStorage_transfer, false);
+        } else {
+            window.attachEvent("onstorage", sessionStorage_transfer);
+        };
+
+        if (!sessionStorage.length) {
+            localStorage.setItem('getSessionStorage', 'foobar');
+            localStorage.removeItem('getSessionStorage', 'foobar');
+        };
+    </script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink((User.Identity.IsAuthenticated)? User.Identity.Name:"ЦНАП", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" style="float:right">
+                    @Html.Action("btn", "Home")
+                </ul>
+            </div>
+        </div>
+    </div>
+    @{Html.RenderAction("Table", "Home");}
+    <div class="container body-content">
+        <hr />
+        @RenderBody()
+        <hr />
+        <footer style="text-align: center;">
+            <p>&copy; @DateTime.Now.Year WebAPI for CNAP</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script>
+        $(function () {
+            @*$('#logout').click(function (e) {
+                e.preventDefault();
+                sessionStorage.removeItem('tokenInfo');
+                //
+                $.post('@Url.Action("Logout", "api/Account/", null, Request.Url.Scheme)');
+                //window.location.replace('@Url.Action("Index", "Home", null, Request.Url.Scheme, null)');
+            });*@
+
+            var tokenKey = "tokenInfo";
+            $('#logoutt').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/Account/Logout',
+                    beforeSend: function (xhr) {
+                        var token = sessionStorage.getItem(tokenKey);
+                        xhr.setRequestHeader("Authorization", "Bearer " + token);
+                    },
+                    success: function ( data) {
+                        alert('х' + data);
+                        sessionStorage.removeItem(tokenKey);
+                        window.location.replace('@Url.Action("Index", "Home")');
+                        },
+                    fail: function (data) {
+                         alert('пло' + data);
+                        }
+                        });
+                        });
+
+
+        });
+
+            //var tokenKey = "tokenInfo";
+            //sessionStorage.clear();
+            //var token = sessionStorage.getItem(tokenKey);
+        //if (token !== null) {
+        //    $('#logout').css('display', 'block');
+        //    $('#Reg').css('display', 'none');
+        //    $('#public-table').css('display', 'none');
+        //    $('#private-table').css('display', 'block');
+        //}
+
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
