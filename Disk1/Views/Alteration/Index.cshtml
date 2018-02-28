@@ -14,7 +14,7 @@
 </div>
 
 <div class="table-responsive">
-    <table class="table">
+    <table class="table" border="1" style="border-collapse: separate;">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FIO)
@@ -33,18 +33,39 @@
 
         @foreach (var item in Model)
         {
-            <tr>
+            if (string.IsNullOrEmpty(item.Got.ToString()))
+            {
+                <tr style="background-color:rgba(164, 194, 244, 0.65);">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FIO)
+                    </td>
+                    <td>
+                        @String.Format("{0:dd/MM/yyyy}", item.Gave)
+                    </td>
+                    <td>
+                        @String.Format("{0:dd/MM/yyyy}", item.Got)
+                    </td>
+                    <td>
+                        @WhoHelper.Who(Html, item.Who)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                    </td>
+                </tr>
+                continue;
+            }
+            <tr style="background-color:rgba(255, 217, 102, 1);">
                 <td>
                     @Html.DisplayFor(modelItem => item.FIO)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Gave)
+                    @String.Format("{0:dd/MM/yyyy}", item.Gave)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Got)
+                    @String.Format("{0:dd/MM/yyyy}", item.Got)
                 </td>
                 <td>
-                    @WhoHelper.Who(Html,item.Who)
+                    @WhoHelper.Who(Html, item.Who)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID })

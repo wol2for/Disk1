@@ -6,9 +6,6 @@
 
 <h2>@ViewBag.username</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
 @*<table class="rwd-table">
         <tr>
@@ -75,7 +72,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Comment)
             </th>
-            <th>Edit</th>
         </tr>
 
         @foreach (var item in Model)
@@ -88,17 +84,15 @@
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Gave)
+                    @String.Format("{0:dd/MM/yyyy}", item.Gave)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Got)
+                    @String.Format("{0:dd/MM/yyyy}", item.Got)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Comment)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                </td>
+
             </tr>
 
 
@@ -107,31 +101,3 @@
     </table>
 
 </div>
-
-@*@foreach (var item in Model)
-    {
-
-
-    <div class="row">
-        <div class="col-sm-2">
-            @Html.DisplayFor(modelItem => item.FIO)
-        </div>
-        <div class="col-sm-2">
-            @Html.DisplayFor(modelItem => item.Address)
-        </div>
-        <div class="col-sm-2">
-            @Html.DisplayFor(modelItem => item.Gave)
-        </div>
-        <div class="col-sm-2">
-            @Html.DisplayFor(modelItem => item.Got)
-        </div>
-        <div class="col-sm-2">
-            @Html.DisplayFor(modelItem => item.Comment)
-        </div>
-        <div class="col-sm-2">
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-        </div>
-        <hr />
-    </div>
-
-    }*@

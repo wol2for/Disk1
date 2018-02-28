@@ -6,19 +6,16 @@
 
 <div class="row">
     <div class="col-sm-2 col-sm-offset-10" style="text-align:right;">
-        
             @Html.ActionLink("Добавить", "Create",null, new { role = "button", @class = "btn btn-success", style = "width:100%" })
-        
     </div>
     
     <div class="col-sm-12" style="text-align:center;">
         <h3>Правый берег</h3>
     </div>
-    
 </div>
 
 <div class="table-responsive">
-    <table class="table" border="1">
+    <table class="table" border="1" style="border-collapse: separate;">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FIO)
@@ -53,10 +50,10 @@
                         @Html.DisplayFor(modelItem => item.Address)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Gave)
+                        @String.Format("{0:dd/MM/yyyy}", item.Gave)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Got)
+                        @String.Format("{0:dd/MM/yyyy}", item.Got)
                     </td>
                     <td>
                         @WhoHelper.Who(Html, item.Who)
@@ -79,10 +76,10 @@
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Gave)
+                    @String.Format("{0:dd/MM/yyyy}", item.Gave)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Got)
+                    @String.Format("{0:dd/MM/yyyy}", item.Got)
                 </td>
                 <td>
                     @WhoHelper.Who(Html, item.Who)

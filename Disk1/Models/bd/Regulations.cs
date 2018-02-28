@@ -12,16 +12,22 @@ namespace Disk1.Models.bd
         public int ID { get; set; }
 
         [DisplayName("ФИО")]
+        [Required(ErrorMessage = "Введите ФИО")]
         [StringLength(250)]
         public string FIO { get; set; }
 
         [DisplayName("Адрес")]
+        [Required(ErrorMessage = "Введите адрес")]
         [StringLength(250)]
         public string Address { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Отдала")]
         public DateTime? Gave { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Забрала")]
         public DateTime? Got { get; set; }
 

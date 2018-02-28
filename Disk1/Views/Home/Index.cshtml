@@ -1,51 +1,10 @@
-﻿@*<div>
-        <label>Введите email</label><br />
-        <input class="editor-label" type="email" id="email" /> <br /><br />
-        <label>Введите пароль</label><br />
-        <input class="editor-label" type="password" id="password" /><br /><br />
-        <label>Подтвердите пароль</label><br />
-        <input  class="editor-label" type="password" id="confirmpassword" /><br /><br />
-        <input type="submit" id="submit" value="Регистрация" />
-    </div>
-
-    @section scripts{
-        <script type="text/javascript">
-            $(function () {
-                $('#submit').click(function (e) {
-                    e.preventDefault();
-                    var data = {
-                        Email: $('#email').val(),
-                        Password: $('#password').val(),
-                        ConfirmPassword: $('#confirmpassword').val()
-                    };
-
-                    $.ajax({
-                        url: '/api/Account/Register',
-                        type: 'POST',
-                        contentType: 'application/json; charset=utf-8',
-                        data: JSON.stringify(data),
-                        success: function (data) {
-
-                            alert("Регистрация пройдена");
-                        },
-                        fail: function (data) {
-                            alert("В процесе регистрации возникла ошибка");
-                        }
-                    });
-                });
-            });
-        </script>
-    }*@
+﻿
 <script type="text/javascript">
     //Перенаправление на home/index если пользователь уже зарегистрирован
     var tokenKey = "tokenInfo";
-    //sessionStorage.clear();
     var token = sessionStorage.getItem(tokenKey);
-    if (token!== null) {
-         window.location.replace('@Url.Action("Main", "Home", null, Request.Url.Scheme, null)');
-    }
-    else {
-
+    if ('@User.Identity.IsAuthenticated' == "True") {
+         window.location.replace('@Url.Action("RightCity", "Home", null, Request.Url.Scheme, null)');
     }
 </script>
 
@@ -80,7 +39,7 @@
 
         <!-- Select Basic -->
         <!-- Success message -->
-        <div class="alert alert-success" style="display:none" role="alert" id="success_message">Успешно!.<i class="glyphicon glyphicon-thumbs-up"></i></div>
+        <div class="alert alert-success" style="display:none" role="alert" id="success_message">Успешно!<i class="glyphicon glyphicon-thumbs-up"></i></div>
 
         <!-- Send -->
         <div class="form-group">
@@ -96,22 +55,6 @@
     </fieldset>
 </form>
 
-
-
-
-
-
-@*<div class="loginForm">
-        <h3>Вход на сайт</h3>
-        <label>Введите email</label><br />
-        <input type="email" id="emailLogin" /> <br /><br />
-        <label>Введите пароль</label><br />
-        <input type="password" id="passwordLogin" /><br /><br />
-        <input type="submit" id="submitLogin" value="Логин" />
-    </div>
-    <div id="output"></div>*@
-
-
 <script type="text/javascript">
     var tokenKey = "tokenInfo";
     function BeginClient(xhr) {
@@ -120,74 +63,15 @@
     }
 </script>
 
-
-
-@*@using (Ajax.BeginForm("values", "api", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "output", OnBegin = "BeginClient" }))
-    {
-
-        <input type="submit" id="getItemsButton" value="Получить данные" />
-    }*@
-
-
-@*<script>
-        function BeginClient(xhr) {
-
-            //             var request = ajaxCOntext.get_request();
-            //securityToken = $('[name=__RequestVerificationToken]').val();
-            //request.get_headers()['__RequestVerificationToken'] = securityToken;
-
-            var tokenKey = "tokenInfo";
-            var token = sessionStorage.getItem(tokenKey);
-            xhr.setRequestHeader("Authorization", "Bearer " + token);
-        }
-    </script>*@
-
 @section scripts{
     <script type="text/javascript">
         $(function () {
             var tokenKey = "tokenInfo";
-            //function BeginClient(xhr) {
-
-            //    //             var request = ajaxCOntext.get_request();
-            //    //securityToken = $('[name=__RequestVerificationToken]').val();
-            //    //request.get_headers()['__RequestVerificationToken'] = securityToken;
-
-            //    var tokenKey = "tokenInfo";
-            //    var token = sessionStorage.getItem(tokenKey);
-            //    xhr.setRequestHeader("Authorization", "Bearer " + token);
-            //}
 
             function BeginClient(xhr) {
                 var token = sessionStorage.getItem(tokenKey);
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             }
-
-            //$.ajaxSetup({
-            //    'beforeSend': function (xhr) {
-            //        securityToken = sessionStorage.getItem(tokenKey);
-            //        alert(securityToken);
-            //        xhr.setRequestHeader("__RequestVerificationToken", securityToken);
-            //    }
-            //});
-            //..................................
-            //$('#getItemsButton').click(function (e) {
-            //    e.preventDefault();
-            //    $.ajax({
-            //        type: 'GET',
-            //        url: '/api/values/',
-            //        beforeSend: function (xhr) {
-
-            //            var token = sessionStorage.getItem(tokenKey);
-            //            xhr.setRequestHeader("Authorization", "Bearer " + token);
-            //        },
-            //        success: function (data) {
-            //            alert(data);
-            //        },
-            //        fail: function (data) {
-            //            alert(data);
-            //        }
-            //    });
-            //});
 
 
             $('#submitLogin').click(function (e) {
@@ -203,14 +87,9 @@
                     url: '/Token',
                     data: loginData,
                     success: function (data) {
-                        $('.userName').text(data.userName);
-                        $('.userInfo').css('display', 'block');
-                        $('.loginForm').css('display', 'none');
-                        // сохраняем в хранилище sessionStorage токен доступа
+                        $('#success_message').css('display', 'block');
                         sessionStorage.setItem(tokenKey, data.access_token);
-                        //console.log(data.access_token);
-                        window.location.replace('@Url.Action("Main", "Home", null, Request.Url.Scheme, null)');
-                        //window.location.href = '@Url.Action("Main", "Home", null, Request.Url.Scheme, null)';
+                        window.location.replace('@Url.Action("RightCity", "Home", null, Request.Url.Scheme, null)');
                     },
                     fail: function (data) {
                         alert('При логине возникла ошибка');
