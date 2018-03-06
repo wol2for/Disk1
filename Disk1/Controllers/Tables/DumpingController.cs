@@ -52,7 +52,7 @@ namespace Disk1.Controllers.Tables
                 var r = new Disk1.Controllers.ValuesController().Post("викопіювання", Dumping);
                 if (!r)
                     return new HttpStatusCodeResult(400, "Неверный запрос");
-
+                Session["selected"] = Dumping.Who;
                 return RedirectToAction("Index");
             }
 

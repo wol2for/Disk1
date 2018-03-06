@@ -18,7 +18,6 @@ namespace Disk1.Models.bd
         public string FIO { get; set; }
 
         [DisplayName("јдрес")]
-        [Required(ErrorMessage = "¬ведите адрес")]
         [StringLength(250)]
         public string Address { get; set; }
 

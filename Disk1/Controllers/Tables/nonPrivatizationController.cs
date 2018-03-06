@@ -52,6 +52,7 @@ namespace Disk1.Controllers.Tables
                 var r = new Disk1.Controllers.ValuesController().Post("неприватизация", NotPrivatization);
                 if (!r)
                     return new HttpStatusCodeResult(400, "Неверный запрос");
+                Session["selected"] = NotPrivatization.Who;
                 return RedirectToAction("Index");
             }
 

@@ -1,7 +1,7 @@
 ﻿@model Disk1.Models.bd.Dumping
 
 @{
-    ViewBag.Title = "Редактирование - викопіювання";
+    ViewBag.Title = "Редактирование - Викопіювання";
 }
 
 @using (Html.BeginForm())
@@ -9,7 +9,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <legend><h2><b>Создание:<br /> викопіювання</b></h2></legend>
+        <legend><h2><b>Редактирование:<br /> Викопіювання</b></h2></legend>
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 

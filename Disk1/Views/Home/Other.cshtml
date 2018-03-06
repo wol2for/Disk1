@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Disk1.Models.bd.Other>
+
+@{
+    ViewBag.Title = "Разное";
+}
+
+<style>
+    .table tr th {
+        text-align: center;
+    }
+</style>
+
+<div class="row">
+    <div class="col-sm-12" style="text-align:center;">
+        <h3>Разное</h3>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table" border="1" style="border-collapse: separate;">
+        <tr>
+            <th>
+                1
+            </th>
+            <th>
+                2
+            </th>
+            <th>
+                3
+            </th>
+            <th>
+                4
+            </th>
+            <th>
+                5
+            </th>
+            <th>
+                6
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.string1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.string2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.string3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.string4)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.string5)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.string6)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

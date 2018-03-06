@@ -202,3 +202,7 @@ C:\Users\User\source\repos\Disk1\Disk1\obj\Debug\Disk1.csproj.CoreCompileInputs.
 C:\Users\User\source\repos\Disk1\Disk1\obj\Debug\Disk1.dll
 C:\Users\User\source\repos\Disk1\Disk1\obj\Debug\Disk1.pdb
 C:\Users\User\source\repos\Disk1\Disk1\obj\Debug\Disk1.csprojResolveAssemblyReference.cache
+C:\Users\r.rohozhyn\source\repos\Disk1\Disk1\bin\PagedList.dll
+C:\Users\r.rohozhyn\source\repos\Disk1\Disk1\bin\PagedList.Mvc.dll
+C:\Users\r.rohozhyn\source\repos\Disk1\Disk1\bin\PagedList.xml
+C:\Users\r.rohozhyn\source\repos\Disk1\Disk1\bin\PagedList.Mvc.xml

@@ -9,14 +9,16 @@ using System.Web;
 using System.Web.Mvc;
 using Disk1.Models.bd;
 using Newtonsoft.Json;
+using PagedList;
 
 namespace Disk1.Controllers.Tables
 {
     [Authorize]
     public class RightController : Controller
     {
-        
-        public ActionResult Index()
+
+
+        public ActionResult All()
         {
             ViewBag.username = User.Identity.Name;
             List<CNAP> list = null;
@@ -35,6 +37,30 @@ namespace Disk1.Controllers.Tables
             }
 
             return View(list.OrderByDescending(e => e.ID).ToList());
+        }
+
+        public ActionResult Index(int? page)
+        {
+            ViewBag.username = User.Identity.Name;
+            List<CNAP> list = null;
+            var response = new Disk1.Controllers.ValuesController().Get("правий (город)");
+
+            if (response == null)
+                return new HttpStatusCodeResult(400, "Такой таблицы не существует");
+
+            try
+            {
+                list = (List<CNAP>)response;
+            }
+            catch
+            {
+                return new HttpStatusCodeResult(400, "Приведение не осуществилось");
+            }
+
+            var pageNumber = page ?? 1;
+            var items = list.OrderByDescending(e => e.ID).ToPagedList(pageNumber, 50);
+
+            return View(items);
         }
 
         #region Create row      
@@ -71,6 +97,7 @@ namespace Disk1.Controllers.Tables
                 //byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
                 //var rr =  cleint.PutAsJsonAsync("api/values/правий", byteContent).Result;
+                Session["selected"] = cNAP.Who;
                 return RedirectToAction("Index");
             }
 

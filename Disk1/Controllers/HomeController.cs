@@ -13,6 +13,7 @@ using System.Data.Entity;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using PagedList;
 
 namespace Disk1.Controllers
 {
@@ -60,7 +61,7 @@ namespace Disk1.Controllers
         #region ТАБЛИЦЫ открытые для всех
 
         //правый город 
-        public ActionResult RightCity()
+        public ActionResult RightCity(int? page)
         {
             ViewBag.username = User.Identity.Name;
             List<CNAP> list = null;
@@ -76,7 +77,10 @@ namespace Disk1.Controllers
                 return new HttpStatusCodeResult(400, "Приведение не осуществилось");
             }
 
-            return View(list.OrderByDescending(e=>e.ID));
+            var pageNumber = page ?? 1;
+            var items  =  list.OrderByDescending(e => e.ID).ToPagedList(pageNumber, 50);
+
+            return View(items);
         }
 
         //ЦНАП контроль
@@ -275,6 +279,15 @@ namespace Disk1.Controllers
             }
 
             return View(list.OrderByDescending(e => e.ID));
+        }
+
+        //Разное
+        public async Task<ActionResult> Other()
+        {
+            using (Disk db = new Disk())
+            {
+                return View(await db.Other.ToListAsync());
+            }
         }
         #endregion
 

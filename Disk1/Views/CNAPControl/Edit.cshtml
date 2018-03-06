@@ -1,7 +1,7 @@
 ﻿@model Disk1.Models.bd.ControlCNAP
 
 @{
-    ViewBag.Title = "Редактирование - ЦНАП контроль";
+    ViewBag.Title = "Редактирование - Контроль цнап";
 }
 
 @using (Html.BeginForm())
@@ -9,7 +9,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <legend><h2><b>Создание:<br /> ЦНАП контроль</b></h2></legend>
+        <legend><h2><b>Редактирование:<br /> Контроль цнап</b></h2></legend>
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 

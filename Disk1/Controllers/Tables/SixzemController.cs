@@ -51,6 +51,7 @@ namespace Disk1.Controllers.Tables
                 var r = new Disk1.Controllers.ValuesController().Post("6-зем", Sixzem);
                 if (!r)
                     return new HttpStatusCodeResult(400, "Неверный запрос");
+                Session["selected"] = Sixzem.Who;
                 return RedirectToAction("Index");
             }
 

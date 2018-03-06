@@ -1,7 +1,7 @@
 ﻿@model Disk1.Models.bd.Zav80
 
 @{
-    ViewBag.Title = "Редактирование - заявка-витяг 80грн.";
+    ViewBag.Title = "Редактирование - Витяг 80грн";
 }
 
 @using (Html.BeginForm())
@@ -9,7 +9,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <legend><h2><b>Создание:<br /> заявка-витяг 80грн.</b></h2></legend>
+        <legend><h2><b>Редактирование:<br /> Витяг 80грн</b></h2></legend>
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 

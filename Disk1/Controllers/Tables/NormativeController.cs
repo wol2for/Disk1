@@ -82,7 +82,7 @@ namespace Disk1.Controllers.Tables
                 var r = new Disk1.Controllers.ValuesController().Put("Норматівки", Regulations);
                 if (!r)
                     return new HttpStatusCodeResult(400, "Неверный запрос");
-
+                Session["selected"] = Regulations.Who;
                 return RedirectToAction("Index");
             }
             return View(Regulations);

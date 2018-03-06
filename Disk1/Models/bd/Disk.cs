@@ -23,6 +23,7 @@ namespace Disk1.Models.bd
         public virtual DbSet<Sixzem> Sixzem { get; set; }
         public virtual DbSet<Who> Who { get; set; }
         public virtual DbSet<Zav80> Zav80 { get; set; }
+        public virtual DbSet<Other> Other { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

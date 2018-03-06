@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Disk1.Models.bd.CNAP>
+@using Disk1.Helpers;
+@{
+    ViewBag.Title = "Правый город, все";
+}
+
+<div class="row">
+    <div class="col-sm-2 col-sm-offset-10" style="text-align:right;">
+        @Html.ActionLink("Добавить", "Create", null, new { role = "button", @class = "btn btn-success", style = "width:100%" })
+    </div>
+
+    <div class="col-sm-12" style="text-align:center;">
+        <h3>Правий, все записи</h3>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table" border="1" style="border-collapse: separate;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().FIO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Gave)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Got)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Who)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Comment)
+            </th>
+            <th>Edit</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (string.IsNullOrEmpty(item.Got.ToString()))
+            {
+                <tr style="background-color:rgba(164, 194, 244, 0.65);">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FIO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @String.Format("{0:dd/MM/yyyy}", item.Gave)
+                    </td>
+                    <td>
+                        @String.Format("{0:dd/MM/yyyy}", item.Got)
+                    </td>
+                    <td>
+                        @WhoHelper.Who(Html, item.Who)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                    </td>
+                </tr>
+                continue;
+            }
+
+            <tr style="background-color:rgba(255, 217, 102, 1);">
+                <td>
+                    @Html.DisplayFor(modelItem => item.FIO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.Gave)
+                </td>
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.Got)
+                </td>
+                <td>
+                    @WhoHelper.Who(Html, item.Who)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

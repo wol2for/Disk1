@@ -51,6 +51,7 @@ namespace Disk1.Controllers.Tables
                 var r = new Disk1.Controllers.ValuesController().Post("ЦНАП контроль", ControlCNAP);
                 if (!r)
                     return new HttpStatusCodeResult(400, "Неверный запрос");
+                Session["selected"] = ControlCNAP.Who;
                 return RedirectToAction("Index");
             }
 

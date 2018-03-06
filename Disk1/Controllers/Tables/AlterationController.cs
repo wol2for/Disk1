@@ -52,10 +52,11 @@ namespace Disk1.Controllers.Tables
                 var r = new Disk1.Controllers.ValuesController().Post("внесеня змін", Alteration);
                 if (!r)
                     return new HttpStatusCodeResult(400, "Неверный запрос");
-
+                Session["selected"] = Alteration.Who;
                 return RedirectToAction("Index");
             }
 
+            
             return View(Alteration);
         }
         #endregion

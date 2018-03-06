@@ -50,6 +50,7 @@ namespace Disk1.Controllers.Tables
                 var r = new Disk1.Controllers.ValuesController().Post("заявка-витяг 80грн.", Zav80);
                 if (!r)
                     return new HttpStatusCodeResult(400, "Неверный запрос");
+                Session["selected"] = Zav80.Who;
                 return RedirectToAction("Index");
             }
 
